@@ -61,7 +61,7 @@ export default function Posts({ setPage, userData, setUserData }) {
               <CircularProgress />
             </Box>
           :
-            <PostList postList={postList} />
+            <PostList postList={postList} newPost={newPost} />
           }
         </Container>
       </ThemeProvider>

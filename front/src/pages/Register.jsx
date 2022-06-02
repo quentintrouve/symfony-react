@@ -22,7 +22,7 @@ import {
 const theme = createTheme();
 
 
-const Register = ({setPage, setRegisterMessage}) => {
+const Register = ({setPage, setRegisterMessage }) => {
 
     const [isLoading, setIsLoading] = useState(false);
 		const [error, setError] = useState(null);

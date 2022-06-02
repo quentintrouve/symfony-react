@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Login from './pages/Login';
 import Posts from './pages/Posts';
 import Register from './pages/Register';
@@ -10,7 +10,12 @@ const App = () => {
   const [registerMessage, setRegisterMessage] = useState(null);
 
   if (page === "posts" && userData !== null){
-    return <Posts setPage={setPage} userData={userData} setUserData={setUserData} />
+    return (
+      <Posts 
+        userData={userData} 
+        setUserData={setUserData}
+      />
+    )
   }
   else if (page === "register"){
     return (
@@ -26,7 +31,7 @@ const App = () => {
         setPage={setPage} 
         setUserData={setUserData} 
         registerMessage={registerMessage} 
-        setRegisterMessage={setRegisterMessage} 
+        setRegisterMessage={setRegisterMessage}
       />
     )
   }

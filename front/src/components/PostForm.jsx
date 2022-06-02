@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { addPost, getPosts } from '../utils/methods';
+import { addPost } from '../utils/methods';
 
 import { 
 	Alert,
