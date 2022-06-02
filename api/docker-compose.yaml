@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+    symfony:
+        build: symfony_config
+        container_name: api
+        ports:
+            - "8245:80"
+        volumes:
+            - ./symfony_config/vhosts:/etc/apache2/sites-enabled
+            - ./symfony_project:/var/www/symfony_project
+        restart: always
+        networks:
+            - dev
+
+
+    maildev:
+        image: maildev/maildev
+        container_name: maildev_docker
+        command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+        ports:
+            - "8082:80"
+        restart: always
+        networks:
+            - dev
+
+    db:
+        image: mariadb:10.7.1
+        container_name: mariadb_docker
+        restart: always
+        volumes:
+            - db-data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: 'root'
+        networks:
+            - dev
+
+    phpmyadmin:
+        image: phpmyadmin
+        container_name: phpmyadmin_docker
+        restart: always
+        depends_on:
+            - db
+        ports:
+            - "8083:80"
+        environment:
+            PMA_HOST: db
+        networks:
+            - dev
+
+networks:
+    dev:
+
+volumes:
+    db-data:
